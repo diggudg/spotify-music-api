@@ -10,6 +10,11 @@ on:
         description: "Environment to deploy to"
         required: true
         default: "dev"
+        type: choice
+        options:
+          - dev
+          - staging
+          - production
 
   #this workflows should build applicationa which is in dotnet
 
