@@ -1,9 +1,12 @@
 name: Workflow dispatch
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
-    #this workflows should build applicationa which is in dotnet
+  #this workflows should build applicationa which is in dotnet
 
 jobs:
   build:
