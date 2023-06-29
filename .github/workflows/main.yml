@@ -48,7 +48,7 @@ jobs:
     name: Deploy to staging ${{ github.run_number }}
     needs: [dev]
     runs-on: ubuntu-latest
-    if: github.event.inputs.environment == 'staging' && github.event_name == 'workflow_dispatch'
+    if: github.event.inputs.environment == 'staging' || github.event_name == 'workflow_dispatch'
     steps:
       - name: Deploy to staging
         run: |
@@ -58,7 +58,7 @@ jobs:
     name: Deploy to production ${{ github.run_number }}
     needs: [dev, staging]
     runs-on: ubuntu-latest
-    if: github.event.inputs.environment == 'production' && github.event_name == 'workflow_dispatch'
+    if: github.event.inputs.environment == 'production' || github.event_name == 'workflow_dispatch'
     steps:
       - name: Deploy to production
         run: |
