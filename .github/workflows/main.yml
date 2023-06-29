@@ -41,8 +41,9 @@ jobs:
         run: echo "::set-output name=VERSION::${{ github.run_number }}"
       - name: Deploy to dev
         run: |
-          echo "Deploying to dev. Version: $VERSION"
+          echo "Deploying to dev. Version:${{ needs.dev.outputs.VERSION }}"
   staging:
+    name: Deploy to staging ${{ needs.dev.outputs.VERSION }}
     runs-on: ubuntu-latest
     needs: [dev]
     if: github.event.inputs.environment == 'staging' && github.event_name == 'workflow_dispatch'
@@ -51,9 +52,10 @@ jobs:
     steps:
       - name: Deploy to staging
         run: |
-          echo "Deploying to staging. Version: $VERSION"
+          echo "Deploying to staging. Version: ${{ needs.dev.outputs.VERSION }}"
 
   production:
+    name: Deploy to production ${{ needs.dev.outputs.VERSION }}
     runs-on: ubuntu-latest
     needs: [staging]
     if: github.event.inputs.environment == 'production' && github.event_name == 'workflow_dispatch'
@@ -62,4 +64,4 @@ jobs:
     steps:
       - name: Deploy to production
         run: |
-          echo "Deploying to production. Version: $VERSION"
+          echo "Deploying to production. Version: ${{ needs.dev.outputs.VERSION }}"
