@@ -9,6 +9,7 @@ on:
         description: "Environment to deploy"
         required: true
         default: "dev"
+        type: environment
 
 jobs:
   build:
