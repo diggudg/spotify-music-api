@@ -28,7 +28,7 @@ jobs:
         run: dotnet test --no-restore --verbosity normal
 
   dev:
-    name: Deploy to dev environment ${{ github.run_number }}
+    name: Deploy to dev ${{ github.run_number }}
     needs: build
     runs-on: ubuntu-latest
     outputs:
@@ -36,16 +36,16 @@ jobs:
     steps:
       - name: Build
         id: build
-        run: echo "::set-output name=PACKAGE::package-dev.tar.gz"
+        run: echo "::set-output name=PACKAGE::${{github.run_number}}-dev.tar.gz"
       - name: Get version
         id: version
         run: echo "::set-output name=VERSION::${{ github.run_number }}"
       - name: Deploy to dev
         run: |
-          echo "Deploying to dev. Version: ${{ needs.dev.outputs.VERSION }}"
+          echo "Deploying to dev. Version: ${{ github.run_number }}"
 
   staging:
-    name: Deploy to staging environment ${{ needs.dev.outputs.VERSION }}
+    name: Deploy to staging ${{ github.run_number }}
     needs: [build, dev]
     runs-on: ubuntu-latest
     if: github.event.inputs.environment == 'staging' && github.event_name == 'workflow_dispatch'
@@ -55,6 +55,7 @@ jobs:
           echo "Deploying to staging. Package: ${{ needs.dev.outputs.PACKAGE }}"
 
   production:
+    name: Deploy to production ${{ github.run_number }}
     needs: [build, dev, staging]
     runs-on: ubuntu-latest
     if: github.event.inputs.environment == 'production' && github.event_name == 'workflow_dispatch'
