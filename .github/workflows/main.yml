@@ -9,7 +9,11 @@ on:
         description: "Environment to deploy to"
         required: true
         default: "dev"
-        type: environment
+        type: choice
+        options:
+          - dev
+          - staging
+          - production
 
   #this workflows should build applicationa which is in dotnet
 
@@ -33,14 +37,6 @@ jobs:
     # write step to deploy to staging
     # write step to deploy to production
     # staging and dev should run on manual trigger
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to ${{ github.event.inputs.environment }}
-        run: |
-          echo "Deploying to ${{ github.event.inputs.environment }}"
-
   dev:
     runs-on: ubuntu-latest
     needs: build
@@ -51,14 +47,14 @@ jobs:
   staging:
     runs-on: ubuntu-latest
     needs: [build, dev]
-    if: github.event.inputs.environment == 'staging'
+    if: github.event.inputs.choice == 'staging'
     steps:
       - name: Deploy to staging
         run: echo "Deploying to staging"
   production:
     runs-on: ubuntu-latest
     needs: [build, dev, staging]
-    if: github.event.inputs.environment == 'production'
+    if: github.event.inputs.choice == 'production'
     steps:
       - name: Deploy to production
         run: echo "Deploying to production"
