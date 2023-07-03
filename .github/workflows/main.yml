@@ -34,6 +34,6 @@ jobs:
     # if it is staging then it should be dev and when it is production then it should be staging
     needs: [build]
     steps:
-      - name: Deploy to $${{ github.environment.name }}
+      - name: Deploy to ${{ github.environment.name }}
         run: |
-          echo run_number $PACKAGE
+          echo run_number ${{ env.PACKAGE }}
