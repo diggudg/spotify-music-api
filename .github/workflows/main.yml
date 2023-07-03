@@ -14,7 +14,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      PACKAGE: ${{ steps.package.outputs.PACKAGE }}
+      PACKAGE: ${{ github.run_number }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET Core
@@ -36,4 +36,4 @@ jobs:
     steps:
       - name: Deploy to $${{ github.environment.name }}
         run: |
-          echo $PACKAGE
+          echo run_number $PACKAGE
