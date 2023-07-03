@@ -28,15 +28,11 @@ jobs:
         run: dotnet test --no-restore --verbosity normal
 
   deploy:
-    name: Deploy to ${{ github.event.inputs.environment }} ${{ github.run_number }}
+    name: Deploy to ${{ github.environment.name }} ${{ github.run_number }}
     runs-on: ubuntu-latest
     # if it is staging then it should be dev and when it is production then it should be staging
     needs: [build]
     steps:
-      - name: Download package
-        uses: actions/download-artifact@v2
-        with:
-          name: package
-      - name: Deploy
+      - name: Deploy to $${{ github.environment.name }}
         run: |
-          echo "Deploying to ${{ github.event.inputs.environment }}. Package: ${{ env.PACKAGE }}"
+          echo "Deploying to ${{github.environment.name}}. Package: ${{ needs.dev.outputs.PACKAGE }}"
