@@ -30,7 +30,10 @@ jobs:
   deploy:
     name: Deploy to ${{ github.event.inputs.environment }} ${{ github.run_number }}
     runs-on: ubuntu-latest
-    needs: build
+    # if it is staging then it should be dev and when it is production then it should be staging
+    needs:
+      - build
+    if: github.event.inputs.environment == 'dev'
     steps:
       - name: Download package
         uses: actions/download-artifact@v2
