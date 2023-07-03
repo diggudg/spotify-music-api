@@ -13,7 +13,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
+    env:
       PACKAGE: ${{ github.run_number }}
     steps:
       - uses: actions/checkout@v2
