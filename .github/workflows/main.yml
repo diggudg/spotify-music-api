@@ -6,14 +6,15 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: "Environment to deploy"
+        description: "Environment to deploy to"
         required: true
         default: "dev"
-        type: environment
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      PACKAGE: ${{ steps.package.outputs.PACKAGE }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET Core
@@ -35,4 +36,4 @@ jobs:
     steps:
       - name: Deploy to $${{ github.environment.name }}
         run: |
-          echo "Deploying to ${{github.environment.name}}. Package: ${{ needs.dev.outputs.PACKAGE }}"
+          echo $PACKAGE
