@@ -36,4 +36,4 @@ jobs:
     steps:
       - name: Deploy to ${{ github.environment.name }}
         run: |
-          echo run_number ${{ env.PACKAGE }}
+          echo digggudg run_number ${{ env.PACKAGE }}
