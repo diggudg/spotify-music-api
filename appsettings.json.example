@@ -1,0 +1,17 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "Spotify": {
+    "clientId": "",
+    "clientSecret": ""
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=spotify.db"
+  },
+  "Example": "Example"
+}
