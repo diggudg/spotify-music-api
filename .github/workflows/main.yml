@@ -53,7 +53,7 @@ jobs:
       - name: Test
         run: dotnet test spotify_api.csproj --no-restore --verbosity normal
       - name: Publish
-        run: dotnet publish spotify_api.csproj --no-restore --no-build --configuration Release
+        run: dotnet publish spotify_api.csproj
 
       - name: publish artifact
         uses: actions/upload-artifact@v2
