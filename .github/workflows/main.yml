@@ -30,7 +30,7 @@ jobs:
           echo '{
             "Key1": "Value1",
             "Key2": "Value2"
-          }' > publish/appsettings.json
+          }' > appsettings.json
         shell: bash
       # - name: Substitute appsettings.json values
       #   uses: actions/variable-substitution@v3
