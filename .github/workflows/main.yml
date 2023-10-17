@@ -59,7 +59,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: spotify_api
-          path: ./obj
+          path: ./bin
       - name: print appsettings
         run: cat appsettings.json
         shell: bash
