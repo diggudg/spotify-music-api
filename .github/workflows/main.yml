@@ -47,11 +47,11 @@ jobs:
         run: |
           echo "PACKAGE=${{ env.PACKAGE }}" >> $GITHUB_ENV
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore spotify_api.csproj
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build  spotify_api.csproj --no-restore
       - name: Test
-        run: dotnet test --no-restore --verbosity normal
+        run: dotnet test spotify_api.csproj --no-restore --verbosity normal
 
   # deploy:
   #   name: Deploy to ${{ github.event.name }} ${{ github.run_number }}
