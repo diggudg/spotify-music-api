@@ -44,7 +44,8 @@ jobs:
   deploy:
     name: Deploy to ${{ github.event.name }} ${{ github.run_number }}
     runs-on: ubuntu-latest
-    # if it is staging then it should be dev and when it is production then it should be staging
+    run: |
+      echo PACKAGE ${{ env.PACKAGE }}
     needs: [build]
     steps:
       - name: Deploy to ${{ github.event.name }}
