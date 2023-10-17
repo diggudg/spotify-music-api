@@ -21,15 +21,15 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "7.x.x"
-      - name: Seutup appsettings
-        run: cp appsettings.json.example  appsettings.json
-        shell: bash
+      # - name: Seutup appsettings
+      #   run: cp appsettings.json.example  appsettings.json
+      #   shell: bash
 
       - name: Create appsettings.json
         run: |
           echo '{
             "Key1": "Value1",
-            "Key2": "Value2"
+            "Key2": ${{ secrets.CONNECTION_STRING }}
           }' > appsettings.json
         shell: bash
       # - name: Substitute appsettings.json values
