@@ -28,8 +28,12 @@ jobs:
         uses: actions/variable-substitution@v3
         with:
           files: appsettings.json
-          variables:
-            Example: "new Example"
+          variables: |
+            {
+              "ConnectionStrings": {
+                "DefaultConnection": "${{ secrets.CONNECTION_STRING }}"
+              }
+            }
 
       - name: Setup environment variables
         run: |
