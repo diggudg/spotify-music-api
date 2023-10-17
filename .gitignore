@@ -7,7 +7,6 @@
 spotify.db
 spotify.db-shm
 spotify.db-wal
-appsettings.json
 appsettings.Development.json
 
 
