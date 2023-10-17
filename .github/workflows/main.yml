@@ -58,7 +58,7 @@ jobs:
         with:
           name: spotify_api
           path: ./publish
-      -name: print appsettings
+      - name: print appsettings
         run: cat appsettings.json
         shell: bash
 
