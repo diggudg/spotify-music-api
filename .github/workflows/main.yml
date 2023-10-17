@@ -23,6 +23,7 @@ jobs:
           dotnet-version: "7.x.x"
       - name: Seutup appsettings
         run: cp appsettings.json.example  appsettings.json
+        shell: bash
       - name: Substitute appsettings.json values
         uses: actions/variable-substitution@v3
         with:
@@ -41,11 +42,11 @@ jobs:
         run: dotnet test --no-restore --verbosity normal
 
   deploy:
-    name: Deploy to ${{ github.environment.name }} ${{ github.run_number }}
+    name: Deploy to ${{ github.event.name }} ${{ github.run_number }}
     runs-on: ubuntu-latest
     # if it is staging then it should be dev and when it is production then it should be staging
     needs: [build]
     steps:
-      - name: Deploy to ${{ github.environment.name }}
+      - name: Deploy to ${{ github.event.name }}
         run: |
           echo digggudg run_number ${{ env.PACKAGE }}
