@@ -45,13 +45,13 @@ jobs:
       - name: Test
         run: dotnet test --no-restore --verbosity normal
 
-  deploy:
-    name: Deploy to ${{ github.event.name }} ${{ github.run_number }}
-    runs-on: ubuntu-latest
-    run: |
-      echo PACKAGE ${{ env.PACKAGE }}
-    needs: [build]
-    steps:
-      - name: Deploy to ${{ github.event.name }}
-        run: |
-          echo digggudg run_number ${{ env.PACKAGE }}
+  # deploy:
+  #   name: Deploy to ${{ github.event.name }} ${{ github.run_number }}
+  #   runs-on: ubuntu-latest
+  #   run: |
+  #     echo PACKAGE ${{ env.PACKAGE }}
+  #   needs: [build]
+  #   steps:
+  #     - name: Deploy to ${{ github.event.name }}
+  #       run: |
+  #         echo digggudg run_number ${{ env.PACKAGE }}
