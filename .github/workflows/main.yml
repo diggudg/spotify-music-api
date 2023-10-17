@@ -52,13 +52,15 @@ jobs:
         run: dotnet build  spotify_api.csproj --no-restore
       - name: Test
         run: dotnet test spotify_api.csproj --no-restore --verbosity normal
-      - name: Publish
-        run: dotnet publish spotify_api.csproj --no-restore --no-build --configuration Release --output ./publish
+    
       - name: publish artifact
         uses: actions/upload-artifact@v2
         with:
           name: spotify_api
           path: ./publish
+      -name: print appsettings
+        run: cat appsettings.json
+        shell: bash
 
   # deploy:
   #   name: Deploy to ${{ github.event.name }} ${{ github.run_number }}
